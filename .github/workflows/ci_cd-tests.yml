@@ -1,11 +1,13 @@
 name: Check that code meets requirements
 on:
-  branches: [main, develop]
+  push:
+    branches: [main, develop]
+
 jobs:
   build:
-    runs-on: ${{system.os}}
+    runs-on: ${{matrix.os}}
     strategy:
-      system:
+      matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: [3.8]
 
