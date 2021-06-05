@@ -16,4 +16,4 @@ Curating physics-guided data-driven solutions for the wind energy industry
 - tensorflow
 
 ### Project examples
-- Prediction of wind wind power across six wind farms
+- [Prediction of wind power across six wind farms](https://medium.com/@abiodunolaoye8/forecasting-wind-power-from-multiple-numerical-weather-predictions-63c9a67cfc5)
