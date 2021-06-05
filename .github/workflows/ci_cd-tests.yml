@@ -1,6 +1,8 @@
 name: Check that code meets requirements
 on:
-  branches: [main, develop]
+  push:
+    branches: [main, develop]
+    
 jobs:
   build:
     runs-on: ${{system.os}}
