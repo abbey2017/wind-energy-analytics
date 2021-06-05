@@ -5,7 +5,7 @@ Curating physics-guided data-driven solutions for the wind energy industry
 - Data analytics
 - Statistics
 - Descriptive, predictive and prescriptive analysis
-- Physic-based modeling
+- Physics-based modeling
 
 ### Tools and technologies
 - Machine learning
