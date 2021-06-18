@@ -12,8 +12,7 @@ class PowerCurveFiltering:
     """
     
     def __init__(self, turbine_label, windspeed_label, power_label, data=None, cutin_speed=3,
-                 bin_interval=0.5, z_coeff=2, filter_cycle=5,
-                 return_fig=False, image_path=None):
+                 bin_interval=0.5, z_coeff=2, filter_cycle=5, return_fig=False, image_path=None):
         """
         turbine_label: column name of unique turbine identifier
         windspeed_label: column name of wind speed
@@ -24,7 +23,7 @@ class PowerCurveFiltering:
         z_coeff: threshold of standard deviation used in filter within which operational data is considered normal
         filter_cycle: number of times to pass scada data through filter
         return_fig: if true, module returns power curve plot in addition to filtered datasets
-        image_path: Used only if return_fig is True
+        image_path: used only if return_fig is True
         """
         self.turbine_label = turbine_label
         self.windspeed_label = windspeed_label
@@ -173,9 +172,9 @@ class PowerCurveFiltering:
         return no_dt_per_turbine_df['index'].tolist()
     
 if __name__ == "__main__":
-    df = pd.read_csv('examples\datasets\la-haute-borne-data-2017-2020.zip', sep=';')
+    df = pd.read_csv('..\..\examples\datasets\la-haute-borne-data-2017-2020.zip', sep=';')
     pc_filter = PowerCurveFiltering(turbine_label='Wind_turbine_name', windspeed_label='Ws_avg', power_label='P_avg', data=df, 
-                                    cutin_speed=3, bin_interval=0.5, z_coeff=2.5, filter_cycle=5, return_fig=True, image_path='examples\images')
+                                    cutin_speed=3, bin_interval=0.5, z_coeff=2.5, filter_cycle=5, return_fig=True, image_path='..\..\examples\images')
     normal_df, abnormal_df = pc_filter.process()
     print('Normal Operations Data', normal_df.head())
     print('Abnormal Operations Data', abnormal_df.head())
