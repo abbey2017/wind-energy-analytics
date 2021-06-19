@@ -76,14 +76,18 @@ class PowerCurveFiltering:
     
         assert len(self.data.index.tolist()) == len(normal_ind_list) + len(abnormal_ind_list)
 
-        normal_df = self.data.iloc[normal_ind_list].reset_index(drop=True)
+        normal_df = self.data.iloc[normal_ind_list]
 
-        abnormal_df = self.data.iloc[abnormal_ind_list].reset_index(drop=True)
+        abnormal_df = self.data.iloc[abnormal_ind_list]
         
         if self.return_fig:
-            normal_df.loc[:, 'Abnormal'] = 'No'
-            abnormal_df.loc[:, 'Abnormal'] = 'Yes'
-            self.processed_data = pd.concat([normal_df, abnormal_df])
+            self.normal_df = normal_df.copy()
+            self.abnormal_df = abnormal_df.copy()
+            
+            self.normal_df.loc[:, 'Abnormal'] = 'No'
+            self.abnormal_df.loc[:, 'Abnormal'] = 'Yes'
+            
+            self.processed_data = pd.concat([self.normal_df, self.abnormal_df])
             
             if not os.path.exists(self.image_path):
                 os.mkdir(self.image_path)
