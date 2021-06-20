@@ -21,7 +21,7 @@ class PowerCurveFilteringTest(unittest.TestCase):
                                              cut_in_speed=3, bin_interval=0.5, z_coeff=2.5, filter_cycle=5, return_fig=False)
         
         self.normal_df, self.abnormal_df = self.pc_filter.process()
-        
+
     def test_power_curve_filtering_results(self):
         
         computed_shape = pd.concat([self.normal_df, self.abnormal_df]).shape
@@ -30,7 +30,6 @@ class PowerCurveFilteringTest(unittest.TestCase):
         expected_abnormal_indices = [1, 8193, 40963, 4, 32773, 32776, 49160, 16397, 40974, 49169]
         computed_normal_indices = self.normal_df.index.tolist()
         computed_abnormal_indices = self.abnormal_df.index.tolist()
-        
         
         # Test returned shape of subsets
         assert computed_shape == self.df.shape, "Returned shape of output data does not match input data"
@@ -43,7 +42,6 @@ class PowerCurveFilteringTest(unittest.TestCase):
         
     def tearDown(self) -> None:
         pass
-
         
     
 if __name__ == '__main__':
