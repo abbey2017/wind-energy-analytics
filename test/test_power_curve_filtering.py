@@ -31,7 +31,6 @@ class PowerCurveFilteringTest(unittest.TestCase):
         computed_normal_indices = self.normal_df.index.tolist()
         computed_abnormal_indices = self.abnormal_df.index.tolist()
         
-        
         # Test returned shape of subsets
         assert computed_shape == self.df.shape, "Returned shape of output data does not match input data"
         
@@ -43,7 +42,6 @@ class PowerCurveFilteringTest(unittest.TestCase):
         
     def tearDown(self) -> None:
         pass
-
         
     
 if __name__ == '__main__':
