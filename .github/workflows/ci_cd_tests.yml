@@ -2,7 +2,7 @@ name: Check that code meets requirements
 on:
   push:
     branches: [master, develop]
-  pull_request:
+  pull-request:
     branches: [master, develop]
 
 jobs:
