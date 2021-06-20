@@ -11,7 +11,7 @@ class PowerCurveFiltering:
     This class returns two subsets of the original SCADA data representing normal and abnormal operations
     """
     
-    def __init__(self, turbine_label, windspeed_label, power_label, data=None, cutin_speed=3,
+    def __init__(self, turbine_label, windspeed_label, power_label, data=None, cut_in_speed=3,
                  bin_interval=0.5, z_coeff=2, filter_cycle=5, return_fig=False, image_path=None):
         """
         turbine_label: column name of unique turbine identifier
@@ -29,7 +29,7 @@ class PowerCurveFiltering:
         self.windspeed_label = windspeed_label
         self.power_label = power_label 
         self.data = data
-        self.cutin_speed = cutin_speed
+        self.cut_in_speed = cut_in_speed
         self.bin_interval = bin_interval
         self.z_coeff = z_coeff
         self.filter_cycle = filter_cycle
@@ -177,8 +177,10 @@ class PowerCurveFiltering:
     
 if __name__ == "__main__":
     df = pd.read_csv('..\..\examples\datasets\la-haute-borne-data-2017-2020.zip', sep=';')
-    pc_filter = PowerCurveFiltering(turbine_label='Wind_turbine_name', windspeed_label='Ws_avg', power_label='P_avg', data=df, 
-                                    cutin_speed=3, bin_interval=0.5, z_coeff=2.5, filter_cycle=5, return_fig=True, image_path='..\..\examples\images')
+    
+    pc_filter = PowerCurveFiltering(turbine_label='Wind_turbine_name', windspeed_label='Ws_avg',
+                                    power_label='P_avg', data=df, cut_in_speed=3, bin_interval=0.5,
+                                    z_coeff=2.5, filter_cycle=5, return_fig=True, image_path='..\..\examples\images')
     normal_df, abnormal_df = pc_filter.process()
     print('Normal Operations Data', normal_df.head())
     print('Abnormal Operations Data', abnormal_df.head())
