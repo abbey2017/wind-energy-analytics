@@ -39,7 +39,7 @@ class PowerCurveFilteringTest(unittest.TestCase):
         assert set(expected_abnormal_indices).issubset(set(computed_abnormal_indices)), "Expected abnormal operating data not in computed results"
         
     def tearDown(self) -> None:
-        print("All power curve filtering tests passed")
+        print("All tests on power curve filtering module passed")
 
         
     

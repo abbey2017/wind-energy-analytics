@@ -18,7 +18,7 @@ class PowerCurveFiltering:
         windspeed_label: column name of wind speed
         power_label: column name of active power
         data: pandas dataframe of scada data
-        cutin_speed: cut in speed of turbine
+        cut_in_speed: cut in speed of turbine
         bin_interval: Wind speed bin interval
         z_coeff: threshold of standard deviation used in filter within which operational data is considered normal
         filter_cycle: number of times to pass scada data through filter
@@ -41,7 +41,7 @@ class PowerCurveFiltering:
         Filters out downtime events from SCADA data 
         """
         self.no_dt_df =  self.data[~((self.data[self.power_label] <= 1) &\
-                                     (self.data[self.windspeed_label] >= self.cutin_speed))]
+                                     (self.data[self.windspeed_label] >= self.cut_in_speed))]
         
     def remove_fault_events_per_turbine(self):
         """
@@ -51,7 +51,7 @@ class PowerCurveFiltering:
         max_power = self.no_dt_per_turbine_df[self.power_label].max()
         
         self.no_dt_per_turbine_df = self.no_dt_per_turbine_df.drop(self.no_dt_per_turbine_df[((self.no_dt_per_turbine_df[self.power_label] < 0.9*max_power) &\
-                                                                                             (self.no_dt_per_turbine_df[self.windspeed_label] > 4.5*self.cutin_speed))].index)
+                                                                                             (self.no_dt_per_turbine_df[self.windspeed_label] > 4.5*self.cut_in_speed))].index)
         
     def process(self):
         """
@@ -171,7 +171,7 @@ class PowerCurveFiltering:
 
             no_dt_per_turbine_df = no_dt_per_turbine_df[(no_dt_per_turbine_df[self.power_label] > no_dt_per_turbine_df.pwr_low_thresh) &\
                                    (no_dt_per_turbine_df[self.power_label] < no_dt_per_turbine_df.pwr_high_thresh) |\
-                                   (no_dt_per_turbine_df[self.windspeed_label] < self.cutin_speed)]
+                                   (no_dt_per_turbine_df[self.windspeed_label] < self.cut_in_speed)]
         
         return no_dt_per_turbine_df['index'].tolist()
     
