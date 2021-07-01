@@ -26,7 +26,7 @@ class TestPowerCurveFiltering(unittest.TestCase):
         
         computed_shape = pd.concat([self.normal_df, self.abnormal_df]).shape
         
-        expected_normal_indices = [0, 2, 3, 5, 6, 7, 8, 9, 10, 11]
+        expected_normal_indices = [0, 8193, 3, 5, 6, 7, 8, 9, 10, 11]
         expected_abnormal_indices = [1, 8193, 40963, 4, 32773, 32776, 49160, 16397, 40974, 49169]
         computed_normal_indices = self.normal_df.index.tolist()
         computed_abnormal_indices = self.abnormal_df.index.tolist()
