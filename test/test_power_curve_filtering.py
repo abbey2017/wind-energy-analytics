@@ -10,7 +10,7 @@ import pandas as pd
 from scada_data_analysis.modules.power_curve_preprocessing import PowerCurveFiltering
 
 
-class PowerCurveFilteringTest(unittest.TestCase):
+class TestPowerCurveFiltering(unittest.TestCase):
     def setUp(self):
         try:
             self.df = pd.read_csv(r'..\examples\datasets\test_df.csv')
