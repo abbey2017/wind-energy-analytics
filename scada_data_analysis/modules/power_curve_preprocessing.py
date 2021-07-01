@@ -102,7 +102,7 @@ class PowerCurveFiltering:
                 plt.ylabel("Power", fontsize=14)
                 plt.xticks(fontsize=14)
                 plt.yticks(fontsize=14)
-                fname = f"{self.image_path}\{turbine_name}_pc.png"
+                fname = fr"{self.image_path}\{turbine_name}_pc.png"
                 plt.savefig(fname)
             
         return normal_df, abnormal_df
