@@ -21,7 +21,7 @@ tensorboard==2.2.1
 tensorboard-plugin-wit==1.8.0
 tensorflow==2.5.0
 tensorflow-cpu==2.5.0
-tensorflow-estimator==2.4.0
+tensorflow-estimator==2.5.0
 tqdm==4.45.0
 urllib3==1.26.5
 xgboost==1.1.1
