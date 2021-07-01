@@ -2,7 +2,7 @@ name: Check that code meets requirements
 on:
   push:
     branches: [master, develop]
-  pull-request:
+  pull_request:
     branches: [master, develop]
 
 jobs:
@@ -14,12 +14,13 @@ jobs:
         python-version: [3.8]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Get dependencies
         run: pip install -r requirements.txt
       - name: run tests
-        run: pytest test
+        run: |
+          pytest test

@@ -10,13 +10,13 @@ import pandas as pd
 from scada_data_analysis.modules.power_curve_preprocessing import PowerCurveFiltering
 
 
-class PowerCurveFilteringTest(unittest.TestCase):
+class TestPowerCurveFiltering(unittest.TestCase):
     def setUp(self):
         try:
-            self.df = pd.read_csv(r'..\examples\datasets\test_df.csv')
+            self.df = pd.read_csv(r'examples/datasets/test_df.csv')
         except:
             self.df = pd.read_csv(r'examples\datasets\test_df.csv')
-            
+        
         self.pc_filter = PowerCurveFiltering(turbine_label='Wind_turbine_name', windspeed_label='Ws_avg', power_label='P_avg', data=self.df, 
                                              cut_in_speed=3, bin_interval=0.5, z_coeff=2.5, filter_cycle=5, return_fig=False)
         
@@ -26,7 +26,7 @@ class PowerCurveFilteringTest(unittest.TestCase):
         
         computed_shape = pd.concat([self.normal_df, self.abnormal_df]).shape
         
-        expected_normal_indices = [0, 8193, 3, 5, 6, 7, 8, 9, 10, 11]
+        expected_normal_indices = [0, 2, 3, 5, 6, 7, 8, 9, 10, 11]
         expected_abnormal_indices = [1, 8193, 40963, 4, 32773, 32776, 49160, 16397, 40974, 49169]
         computed_normal_indices = self.normal_df.index.tolist()
         computed_abnormal_indices = self.abnormal_df.index.tolist()
