@@ -13,9 +13,9 @@ from scada_data_analysis.modules.power_curve_preprocessing import PowerCurveFilt
 class TestPowerCurveFiltering(unittest.TestCase):
     def setUp(self):
         try:
-            self.df = pd.read_csv('examples/datasets/test_df.csv')
+            self.df = pd.read_csv(r'examples/datasets/test_df.csv')
         except:
-            self.df = pd.read_csv('examples\datasets\test_df.csv')
+            self.df = pd.read_csv(r'examples\datasets\test_df.csv')
         
         self.pc_filter = PowerCurveFiltering(turbine_label='Wind_turbine_name', windspeed_label='Ws_avg', power_label='P_avg', data=self.df, 
                                              cut_in_speed=3, bin_interval=0.5, z_coeff=2.5, filter_cycle=5, return_fig=False)
