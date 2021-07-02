@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name = 'scada_data_analysis',
     packages = ['scada_data_analysis'],
-    version = 'v1.0.0',  # Ideally should be same as your GitHub release tag varsion
+    version = 'v1.0.0a',  
     description = 'This version features a power curve filtering\
                    module that takes in raw SCADA data from multiple wind turbines\
                    and returns two subsets of the original dataset namely the normal\
