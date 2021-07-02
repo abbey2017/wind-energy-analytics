@@ -1,9 +1,9 @@
 name: Check that code meets requirements
 on:
   push:
-    branches: [master, develop]
+    branches: [main, develop]
   pull_request:
-    branches: [master, develop]
+    branches: [main, develop]
 
 jobs:
   build:
