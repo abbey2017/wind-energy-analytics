@@ -76,9 +76,9 @@ class PowerCurveFiltering:
     
         assert len(self.data.index.tolist()) == len(normal_ind_list) + len(abnormal_ind_list)
 
-        normal_df = self.data.iloc[normal_ind_list]
+        normal_df = self.data.iloc[normal_ind_list].drop('index', axis=1)
 
-        abnormal_df = self.data.iloc[abnormal_ind_list]
+        abnormal_df = self.data.iloc[abnormal_ind_list].drop('index', axis=1)
         
         if self.return_fig:
             self.normal_df = normal_df.copy()
