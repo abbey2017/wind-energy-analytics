@@ -19,7 +19,7 @@ sweetviz==1.0a7
 tblib==1.6.0
 tensorboard==2.5.0
 tensorflow==2.7.2
-tensorflow-cpu==2.5.2
+tensorflow-cpu==2.7.2
 tensorflow-estimator==2.5.0
 tqdm==4.45.0
 urllib3==1.26.5
