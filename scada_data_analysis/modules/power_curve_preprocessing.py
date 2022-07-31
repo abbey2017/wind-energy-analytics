@@ -5,6 +5,8 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from scada_data_analysis.utils import binning_function
+
 
 class PowerCurveFiltering:
     """
@@ -107,34 +109,6 @@ class PowerCurveFiltering:
             
         return normal_df, abnormal_df
 
-    def binning_func(self, turbine_data):
-        """
-        Bins wind speed into group of values using bin_interval
-        
-        turbine_data: pandas dataframe containing windspeed and power columns
-        
-        Returns: Median wind speed, average and standard deviation of produced power for each bin
-        """
-        turb_df = turbine_data.copy()
-        max_windspeed = int(max(turb_df[self.windspeed_label]))
-        
-        windspeed_bins = pd.IntervalIndex.from_tuples([(round(self.bin_interval*a, 2),
-                                                        round((self.bin_interval*a)+self.bin_interval, 2))\
-                                                            for a in range(0, 2*max_windspeed+1)])
-        
-        turb_df.loc[:, 'windspeed_bin'] = pd.cut(turb_df[self.windspeed_label], bins=windspeed_bins)
-        
-        binned_turb_df = turb_df.groupby('windspeed_bin', as_index=False)[[self.windspeed_label,
-                                                                           self.power_label]].agg({self.windspeed_label: 'median',
-                                                                           self.power_label: ['mean', 'std']},
-                                                                           as_index=False).dropna(subset=[(self.power_label,
-                                                                           'mean')]).fillna({(self.power_label,
-                                                                                              'std'): 0}).reset_index(drop=True)
-        
-        binned_turb_df.columns = ['windspeed_bin', 'windspeed_bin_median', 'pwr_bin_mean', 'pwr_bin_std']
-        
-        return binned_turb_df
-
     def secondary_filter(self):
         """
         Filters the turbine data using provided threshold (z_coeff)
@@ -156,7 +130,7 @@ class PowerCurveFiltering:
         
         for _ in range(int(self.filter_cycle)):
             
-            binned_turb_df = self.binning_func(no_dt_per_turbine_df)
+            binned_turb_df = binning_function(no_dt_per_turbine_df)
             
             if set(no_dt_per_turbine_df.columns).issuperset(set(['windspeed_bin_median', 'pwr_bin_mean', 'pwr_bin_std'])):
                 no_dt_per_turbine_df.drop(['windspeed_bin_median', 'pwr_bin_mean', 'pwr_bin_std'], axis=1, inplace=True)
