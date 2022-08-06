@@ -1,17 +1,27 @@
-from distutils.core import setup
+import setuptools
 
-setup(
-    name = 'scada_data_analysis',
-    packages = ['scada_data_analysis'],
-    version = 'v1.0.0',  # Ideally should be same as your GitHub release tag varsion
-    description = 'This version features a power curve filtering\
-                   module that takes in raw SCADA data from multiple wind turbines\
-                   and returns two subsets of the original dataset namely the normal\
-                   and abnormal operations data',
-    author = 'Abiodun Olaoye',
-    author_email = 'abiodunolaoye8@gmail.com',
-    url = 'https://github.com/abbey2017/wind-energy-analytics',
-    download_url = 'https://github.com/abbey2017/wind-energy-analytics/releases/tag/v1.0.0',
-    keywords = ['scada-data-filtering', 'wind-energy'],
-    classifiers = [],
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
+    name="scada_data_analysis",
+    version="1.0.3",
+    author="Abiodun Olaoye",
+    author_email="abiodunolaoye8@gmail.com",
+    description="A set of tools for enabling wind energy data analysis",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/abbey2017/wind-energy-analytics",
+    project_urls={
+        "Bug Tracker": "https://github.com/abbey2017/wind-energy-analytics/issues",
+    },
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: OS Independent",
+    ],
+    packages=setuptools.find_packages(exclude=["test"]),
+    python_requires=">=3.6",
+    install_requires=['pandas', 'matplotlib'],
+    keywords = ['power-curve-filtering', 'scada-data-analytics', 'wind-energy'],
 )
