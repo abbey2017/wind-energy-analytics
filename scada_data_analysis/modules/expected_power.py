@@ -32,7 +32,7 @@ class BinningMethod:
         self.method = method
         
         # Initialize power curve processing class
-        pc_filter = pcf.PowerCurvePreprocessing(self.turbine_label, self.windspeed_label, self.power_label,
+        pc_filter = pcf.dPowerCurvePreprocessing(self.turbine_label, self.windspeed_label, self.power_label,
                                                 self.data, self.cut_in_speed, self.bin_interval, self.z_coeff,
                                                 self.filter_cycle, self.method)
 
