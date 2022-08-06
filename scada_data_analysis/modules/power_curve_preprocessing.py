@@ -6,9 +6,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 import sys
-sys.path.append('../')
+sys.path.append('')
 
-from utils.binning_function import binning_func
+from scada_data_analysis.utils.binning_function import binning_func
 
 
 class PowerCurveFiltering:
@@ -153,11 +153,11 @@ class PowerCurveFiltering:
         return no_dt_per_turbine_df['index'].tolist()
     
 if __name__ == "__main__":
-    df = pd.read_csv(r'..\..\examples\datasets\la-haute-borne-data-2017-2020.zip', sep=';')
+    df = pd.read_csv(r'examples\datasets\la-haute-borne-data-2017-2020.zip', sep=';')
     
     pc_filter = PowerCurveFiltering(turbine_label='Wind_turbine_name', windspeed_label='Ws_avg',
                                     power_label='P_avg', data=df, cut_in_speed=3, bin_interval=0.5,
-                                    z_coeff=2.5, filter_cycle=5, return_fig=False, image_path=r'..\..\examples\images')
+                                    z_coeff=2.5, filter_cycle=5, return_fig=True, image_path=r'examples\images')
     normal_df, abnormal_df = pc_filter.process()
     print('Normal Operations Data', normal_df.head())
     print('Abnormal Operations Data', abnormal_df.head())
