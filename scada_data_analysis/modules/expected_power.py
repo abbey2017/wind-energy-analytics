@@ -2,6 +2,7 @@
 This module is used to estimate the expected power of a wind turbine generator.
 """
 import sys
+import numpy as np
 import pandas as pd
 
 from scipy.interpolate import interp1d
@@ -13,8 +14,8 @@ from scada_data_analysis.modules.power_curve_preprocessing import PowerCurveFilt
 
 class ExpectedPower:
     def __init__(self, turbine_label, windspeed_label, power_label,
-                 cut_in_speed=3, bin_interval=0.5, z_coeff=2, filter_cycle=5, method='binning',
-                 kind='linear') -> None:
+                 cut_in_speed=3, bin_interval=0.5, z_coeff=2, filter_cycle=5, method=None,
+                 kind=None) -> None:
         """
         turbine_label:   Column name of unique turbine identifiers or turbine names
         windspeed_label: Column name of wind speed
@@ -41,6 +42,10 @@ class ExpectedPower:
         self.filter_cycle = filter_cycle
         self.method = method
         self.kind = kind
+        
+        # instantiate a dictionary to store prediction functions and max power for each turbine
+        self.pred_funcs_dict = dict()
+        self.max_power_dict = dict()
     
     def fit(self, training_data):
         """
@@ -56,10 +61,6 @@ class ExpectedPower:
         
         # get unique turbine names in training data
         self.turbine_names = self.normal_df[self.turbine_label].unique()
-        
-        # instantiate a dictionary to store prediction functions for each turbine
-        self.pred_funcs_dict = dict()
-        self.max_power_dict = dict()
         
         for turbine_name in self.turbine_names:
             # extract filterd data for a single turbine
