@@ -20,6 +20,7 @@ pip install scada-data-analysis
 
 ### Current modules
 - Iterative power curve filter (returns normal and abnormal datapoints)
+- Expected power estimator (returns expected power based on operational data)
 
 ### Usage of power curve filter
 ```
@@ -37,4 +38,24 @@ pc_filter = PowerCurveFiltering(turbine_label='Wind_turbine_name', windspeed_lab
 
 # Process raw scada data
 normal_df, abnormal_df = pc_filter.process()
+```
+
+### Usage of expected power estimator
+```
+import pandas as pd
+
+from scada_data_analysis.modules.expected_power import ExpectedPower
+
+# Load turbine scada data
+df = pd.read_csv('path\to\data')
+
+# Instantiate expected power estimator
+power_model = ExpectedPower(turbine_label='Wind_turbine_name', windspeed_label='Ws_avg',
+                            power_label='P_avg', method='binning', kind='linear')
+
+# Fit estimator based on training data
+power_model = power_model.fit(train_df)
+
+# Estimate expected power based on operation power curve
+pred_df = power_model.predict(test_df)
 ```
