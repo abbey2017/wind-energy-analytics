@@ -78,7 +78,7 @@ class PowerCurveFiltering:
         normal_ind_list = sum(filtered_ind_list, [])
         
         abnormal_ind_list = list(set(self.data.index.tolist()).difference(set(normal_ind_list)))
-    
+        
         assert len(self.data.index.tolist()) == len(normal_ind_list) + len(abnormal_ind_list)
 
         normal_df = self.data.iloc[normal_ind_list]
