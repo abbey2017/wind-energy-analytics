@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="scada_data_analysis",
-    version="1.0.3",
+    version="1.0.5",
     author="Abiodun Olaoye",
     author_email="abiodunolaoye8@gmail.com",
     description="A set of tools for enabling wind energy data analysis",
