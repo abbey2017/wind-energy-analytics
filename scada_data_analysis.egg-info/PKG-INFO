@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: scada-data-analysis
-Version: 1.0.6
+Version: 1.0.5
 Summary: A set of tools for enabling wind energy data analysis
 Home-page: https://github.com/abbey2017/wind-energy-analytics
 Author: Abiodun Olaoye
@@ -77,3 +77,4 @@ power_model = power_model.fit(train_df)
 # Estimate expected power based on operation power curve
 pred_df = power_model.predict(test_df)
 ```
+
