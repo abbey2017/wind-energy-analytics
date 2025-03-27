@@ -23,7 +23,7 @@ class TestExpectedPower(unittest.TestCase):
         self.test_df = self.df[38000:].reset_index(drop=True)
        
     def run_calculations(self, interp_kind):
-        self.power_model = ExpectedPower(turbine_label='Wind_turbine_name', windspeed_label='Ws_avg',
+        self.power_model = ExpectedPower(turbine_label='title', windspeed_label='Ws_avg',
                                          power_label='P_avg', method='binning', kind=interp_kind)
         self.power_model = self.power_model.fit(self.train_df)
         self.pred_df = self.power_model.predict(self.test_df)

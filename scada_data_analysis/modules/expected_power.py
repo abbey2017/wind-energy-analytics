@@ -65,8 +65,8 @@ class ExpectedPower:
         self.max_power_dict = dict() 
         
         for turbine_name in self.turbine_names:
-            # extract filterd data for a single turbine
-            normal_temp_df = self.normal_df[self.normal_df.Wind_turbine_name == turbine_name].copy()
+            # extract filtered data for a single turbine
+            normal_temp_df = self.normal_df[self.normal_df[self.turbine_label] == turbine_name].copy()
             if self.method == 'binning':
                 # bin filtered data before interpolation
                 binned_df = binning_func(normal_temp_df, self.windspeed_label, self.power_label, self.bin_interval)
